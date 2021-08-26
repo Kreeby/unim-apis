@@ -9,6 +9,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,12 @@ public class UserServiceImpl implements UserService {
 
   UserRepository userRepository;
   UserMapper userMapper;
+
+  @Override
+  public UserEntity findByUsername(String username) {
+    return userRepository.findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException("User with username: " + username + " not found"));
+  }
 
   @Override
   public List<UserResponseDto> findAllUsers() {
