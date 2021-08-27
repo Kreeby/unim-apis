@@ -49,10 +49,10 @@ public class UserEntity {
   @Column(name = "password_hash", length = 32, nullable = false)
   String hashedPassword;
 
-  @Column(name = "registered_at")
+  @Column(name = "registered_at", nullable = false)
   LocalDateTime registeredAt;
 
-  @Column(name = "last_login")
+  @Column(name = "last_login", nullable = false)
   LocalDateTime lastLogin;
 
   @Column(name = "intro")

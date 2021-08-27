@@ -11,12 +11,15 @@ import javax.persistence.Table;
 import java.util.Set;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Entity
 @Table(name = "roles")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Data
+@Getter
+@Setter
 public class RoleEntity {
 
   @Id

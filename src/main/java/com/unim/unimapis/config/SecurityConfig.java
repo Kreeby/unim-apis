@@ -24,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   JwtTokenProvider jwtTokenProvider;
 
   static String LOGIN_ENDPOINT = "/api/v1/auth/login";
+  static String REGISTER_ENDPOINT = "/api/v1/auth/register";
   static String GET_USERS = "/api/v1/users/**";
 
   @Override
@@ -46,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-            .antMatchers(LOGIN_ENDPOINT).permitAll()
+            .antMatchers(LOGIN_ENDPOINT, REGISTER_ENDPOINT).permitAll()
             .anyRequest().authenticated()
             .and()
             .apply(new JwtTokenConfigurer(jwtTokenProvider));
