@@ -23,7 +23,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import javax.xml.bind.ValidationException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -35,7 +35,6 @@ public class AuthServiceImpl implements AuthService {
 
   AuthenticationManager authenticationManager;
   JwtTokenProvider jwtTokenProvider;
-  UserService userService;
   AuthMapper authMapper;
   BCryptPasswordEncoder passwordEncoder;
   RoleRepository roleRepository;
@@ -48,7 +47,8 @@ public class AuthServiceImpl implements AuthService {
     String username = requestDto.getUsername();
     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword()));
 
-    UserEntity user = userService.findByUsername(username);
+    UserEntity user = userRepository.findByUsername(username)
+            .orElseThrow(() -> new NoSuchElementException("No such user with username " + username));
     String token = jwtTokenProvider.createToken(username, user.getRoles());
 
 
@@ -57,13 +57,7 @@ public class AuthServiceImpl implements AuthService {
 
   @Override
   public RegistrationResponseDto register(RegistrationRequestDto requestDto) {
-    RoleEntity adminRole = roleRepository.findById(1)
-            .orElseThrow(() -> new NoSuchElementException("No role with name ROLE_ADMIN"));
-    RoleEntity userRole = roleRepository.findById(2)
-            .orElseThrow(() -> new NoSuchElementException("No role with name ROLE_USER"));
-    List<RoleEntity> roles = new ArrayList<>();
-    roles.add(userRole);
-    roles.add(adminRole);
+    List<RoleEntity> roles = roleRepository.findAllById(requestDto.getRoles());
 
     UserEntity userEntity = userMapper.toEntity(requestDto, roles);
     userEntity.setHashedPassword(passwordEncoder.encode(requestDto.getPassword()));

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
 import java.util.Set;
 
 @Setter
@@ -21,5 +22,5 @@ public class RegistrationRequestDto {
   String introText;
   String profileText;
   String username;
-  Set<RoleEntity> roles;
+  List<Integer> roles;
 }
