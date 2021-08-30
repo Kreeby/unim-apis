@@ -9,9 +9,11 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,7 +35,6 @@ import java.util.Set;
 
 @Component
 @Slf4j
-@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class JwtTokenProvider {
 
@@ -43,7 +44,8 @@ public class JwtTokenProvider {
   @Value("${jwt.token.expired}")
   Long validityInMilliseconds;
 
-  UserDetailsService userDetailsService;
+  @Autowired
+  private UserDetailsService userDetailsService;
 
 
   @Bean

@@ -16,11 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@RequiredArgsConstructor
 @AllArgsConstructor
 public class JwtTokenFilter extends GenericFilterBean {
 
-  JwtTokenProvider jwtTokenProvider;
+  final JwtTokenProvider jwtTokenProvider;
 
   @Override
   public void doFilter(ServletRequest servletRequest,

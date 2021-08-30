@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService {
             .orElseThrow(() -> new UsernameNotFoundException("User with username: " + username + " not found"));
   }
 
+
   @Override
   public List<UserResponseDto> findAllUsers() {
     List<UserEntity> foundUserEntities = userRepository.findAll();
