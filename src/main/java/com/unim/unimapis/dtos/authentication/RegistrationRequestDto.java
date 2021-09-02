@@ -1,13 +1,11 @@
 package com.unim.unimapis.dtos.authentication;
 
-import com.unim.unimapis.models.RoleEntity;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
-import java.util.Set;
 
 @Setter
 @Getter
