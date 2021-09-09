@@ -9,6 +9,6 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthenticationRequestDto {
-  String username;
+  String email;
   String password;
 }

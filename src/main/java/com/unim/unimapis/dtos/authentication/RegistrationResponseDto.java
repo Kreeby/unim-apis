@@ -13,7 +13,6 @@ public class RegistrationResponseDto {
   String firstName;
   String middleName;
   String lastName;
-  String userName;
   String phoneNumber;
   String email;
   String password;

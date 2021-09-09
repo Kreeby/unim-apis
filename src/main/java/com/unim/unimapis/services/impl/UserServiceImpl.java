@@ -24,9 +24,9 @@ public class UserServiceImpl implements UserService {
   UserMapper userMapper;
 
   @Override
-  public UserEntity findByUsername(String username) {
-    return userRepository.findByUsername(username)
-            .orElseThrow(() -> new UsernameNotFoundException("User with username: " + username + " not found"));
+  public UserEntity findByEmailAddress(String emailAddress) {
+    return userRepository.findByEmailAddress(emailAddress)
+            .orElseThrow(() -> new UsernameNotFoundException("User with username: " + emailAddress + " not found"));
   }
 
 

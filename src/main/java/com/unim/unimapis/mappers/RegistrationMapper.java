@@ -11,7 +11,6 @@ import org.mapstruct.ReportingPolicy;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface RegistrationMapper {
 
-  @Mapping(target = "userName", source = "username")
   @Mapping(target = "profile", source = "profileText")
   @Mapping(target = "password", source = "hashedPassword")
   @Mapping(target = "intro", source = "introText")

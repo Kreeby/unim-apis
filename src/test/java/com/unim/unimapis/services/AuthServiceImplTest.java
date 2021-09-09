@@ -55,9 +55,9 @@ public class AuthServiceImplTest {
     AuthenticationResponseDto expected = AuthenticationResponseDtoBuilder.withBasicData().build();
     UserEntity userEntity = UserEntityBuilder.withBasicData().build();
 
-    Mockito.when(userRepository.findByUsername(requestDto.getUsername())).thenReturn(Optional.of(userEntity));
-    Mockito.when(jwtTokenProvider.createToken(requestDto.getUsername(), userEntity.getRoles())).thenReturn("test");
-    Mockito.when(authMapper.toDto(requestDto.getUsername(), "test")).thenReturn(expected);
+    Mockito.when(userRepository.findByEmailAddress(requestDto.getEmail())).thenReturn(Optional.of(userEntity));
+    Mockito.when(jwtTokenProvider.createToken(requestDto.getEmail(), userEntity.getRoles())).thenReturn("test");
+    Mockito.when(authMapper.toDto(requestDto.getEmail(), "test")).thenReturn(expected);
     AuthenticationResponseDto actual = authService.login(requestDto);
 
     Assertions.assertEquals(expected, actual);

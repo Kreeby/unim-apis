@@ -15,7 +15,6 @@ import java.util.Collection;
 public class JwtUser implements UserDetails {
 
   Integer id;
-  String username;
   String firstName;
   String middleName;
   String lastName;
@@ -41,7 +40,7 @@ public class JwtUser implements UserDetails {
 
   @Override
   public String getUsername() {
-    return username;
+    return emailAddress;
   }
 
   public Integer getId() {

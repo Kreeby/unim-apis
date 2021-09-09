@@ -21,8 +21,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   UserService userService;
 
   @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    UserEntity user = userService.findByUsername(username);
+  public UserDetails loadUserByUsername(String emailAddress) throws UsernameNotFoundException {
+    UserEntity user = userService.findByEmailAddress(emailAddress);
     return JwtUserFactory.create(user);
   }
 }

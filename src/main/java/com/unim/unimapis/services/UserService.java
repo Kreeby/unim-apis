@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
 
-  UserEntity findByUsername(String username);
+  UserEntity findByEmailAddress(String username);
 
   List<UserResponseDto> findAllUsers();
 }

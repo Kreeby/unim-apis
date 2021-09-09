@@ -13,7 +13,8 @@ import com.unim.unimapis.repository.RoleRepository;
 import com.unim.unimapis.repository.UserRepository;
 import com.unim.unimapis.security.jwt.JwtTokenProvider;
 import com.unim.unimapis.services.AuthService;
-import com.unim.unimapis.services.UserService;
+import java.util.List;
+import java.util.NoSuchElementException;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -22,10 +23,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import javax.xml.bind.ValidationException;
-import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 @Slf4j
@@ -44,15 +41,15 @@ public class AuthServiceImpl implements AuthService {
 
   @Override
   public AuthenticationResponseDto login(AuthenticationRequestDto requestDto) {
-    String username = requestDto.getUsername();
-    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword()));
+    String email = requestDto.getEmail();
+    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, requestDto.getPassword()));
 
-    UserEntity user = userRepository.findByUsername(username)
-            .orElseThrow(() -> new NoSuchElementException("No such user with username " + username));
-    String token = jwtTokenProvider.createToken(username, user.getRoles());
+    UserEntity user = userRepository.findByEmailAddress(email)
+            .orElseThrow(() -> new NoSuchElementException("No such user with username " + email));
+    String token = jwtTokenProvider.createToken(email, user.getRoles());
 
 
-    return authMapper.toDto(username, token);
+    return authMapper.toDto(email, token);
   }
 
   @Override

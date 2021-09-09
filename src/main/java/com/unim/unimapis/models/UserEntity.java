@@ -15,12 +15,15 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Entity
 @Table(name = "users")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Data
+@Getter
+@Setter
 public class UserEntity {
 
   @Id
@@ -37,13 +40,10 @@ public class UserEntity {
   @Column(name = "last_name", length = 50, nullable = false)
   String lastName;
 
-  @Column(name = "username", length = 50, nullable = false, unique = true)
-  String username;
-
   @Column(name = "phone_number", length = 15, nullable = false)
   String phoneNumber;
 
-  @Column(name = "email", length = 50)
+  @Column(name = "email", length = 50, nullable = false, unique = true)
   String emailAddress;
 
   @Column(name = "password_hash", length = 32, nullable = false)

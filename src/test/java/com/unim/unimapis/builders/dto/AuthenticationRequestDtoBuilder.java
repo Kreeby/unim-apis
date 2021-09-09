@@ -12,7 +12,7 @@ public class AuthenticationRequestDtoBuilder {
 
   public static AuthenticationRequestDtoBuilder withBasicData() {
     AuthenticationRequestDto requestDto = new AuthenticationRequestDto();
-    requestDto.setUsername("rashad");
+    requestDto.setEmail("rashad");
     requestDto.setPassword("test");
     return new AuthenticationRequestDtoBuilder(requestDto);
   }
