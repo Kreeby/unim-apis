@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       - POSTGRES_USER=rashad
-      - POSTGRES_PASSWORD=cm punk 22
+      - POSTGRES_PASSWORD=cmpunk2121
     logging:
       options:
         max-size: 10m
