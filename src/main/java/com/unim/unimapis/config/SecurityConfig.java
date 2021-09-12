@@ -28,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   static String ADMIN_ENDPOINT = "/api/v1/admin/**";
   static String MESSAGE_ENDPOINT = "/chat";
   static String USERS_ENDPOINT = "/api/v1/**";
+  static String MD_ENDPOINT = "/api/v1/md/**";
 
   @Override
   @Bean
@@ -53,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
             .antMatchers(USERS_ENDPOINT).permitAll()
             .antMatchers(MESSAGE_ENDPOINT).permitAll()
+            .antMatchers(MD_ENDPOINT).hasRole("USER")
             .anyRequest().authenticated()
             .and()
             .apply(new JwtTokenConfigurer(jwtTokenProvider));

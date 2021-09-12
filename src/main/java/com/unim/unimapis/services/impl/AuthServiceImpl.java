@@ -7,8 +7,12 @@ import com.unim.unimapis.dtos.authentication.RegistrationResponseDto;
 import com.unim.unimapis.mappers.AuthMapper;
 import com.unim.unimapis.mappers.RegistrationMapper;
 import com.unim.unimapis.mappers.UserMapper;
+import com.unim.unimapis.models.FacultyEntity;
+import com.unim.unimapis.models.InterestEntity;
 import com.unim.unimapis.models.RoleEntity;
 import com.unim.unimapis.models.UserEntity;
+import com.unim.unimapis.repository.FacultyRepository;
+import com.unim.unimapis.repository.InterestRepository;
 import com.unim.unimapis.repository.RoleRepository;
 import com.unim.unimapis.repository.UserRepository;
 import com.unim.unimapis.security.jwt.JwtTokenProvider;
@@ -24,6 +28,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.ValidationException;
+
 @Service
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -37,6 +43,8 @@ public class AuthServiceImpl implements AuthService {
   RoleRepository roleRepository;
   UserMapper userMapper;
   UserRepository userRepository;
+  InterestRepository interestRepository;
+  FacultyRepository facultyRepository;
   RegistrationMapper registrationMapper;
 
   @Override
@@ -54,9 +62,11 @@ public class AuthServiceImpl implements AuthService {
 
   @Override
   public RegistrationResponseDto register(RegistrationRequestDto requestDto) {
-    List<RoleEntity> roles = roleRepository.findAllById(requestDto.getRoles());
-
-    UserEntity userEntity = userMapper.toEntity(requestDto, roles);
+    List<InterestEntity> interestEntities = interestRepository.findAllById(requestDto.getInterestIds());
+    List<RoleEntity> roleEntities = roleRepository.findAllByRoleName("USER")
+            .orElseThrow(() -> new NoSuchElementException("Server error 500"));
+    List<FacultyEntity> facultyEntities = facultyRepository.findAllById(requestDto.getFacultyId());
+    UserEntity userEntity = userMapper.toEntity(requestDto, roleEntities, interestEntities, facultyEntities);
     userEntity.setHashedPassword(passwordEncoder.encode(requestDto.getPassword()));
 
     UserEntity savedUser = userRepository.save(userEntity);
