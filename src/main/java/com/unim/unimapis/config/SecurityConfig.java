@@ -29,6 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   static String MESSAGE_ENDPOINT = "/chat";
   static String USERS_ENDPOINT = "/api/v1/**";
   static String MD_ENDPOINT = "/api/v1/md/**";
+  static String SWAGGER_ENDPOINT = "/swagger-ui.html";
+  static String SWAGGER_API_ENDPOINT = "/v2/**";
+  static String ROOT_ENDPOINT = "/";
+  static String SWAGGER_RESOURCES_ENDPOINT = "/swagger-resources/**";
+  static String WEBJARS_ENDPOINT = "/webjars/**";
 
   @Override
   @Bean
@@ -55,6 +60,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(USERS_ENDPOINT).permitAll()
             .antMatchers(MESSAGE_ENDPOINT).permitAll()
             .antMatchers(MD_ENDPOINT).hasRole("USER")
+            .antMatchers(SWAGGER_ENDPOINT).permitAll()
+            .antMatchers(WEBJARS_ENDPOINT).permitAll()
+            .antMatchers(SWAGGER_RESOURCES_ENDPOINT).permitAll()
+            .antMatchers(SWAGGER_API_ENDPOINT).permitAll()
+            .antMatchers(ROOT_ENDPOINT).permitAll()
             .anyRequest().authenticated()
             .and()
             .apply(new JwtTokenConfigurer(jwtTokenProvider));
