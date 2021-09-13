@@ -1,16 +1,13 @@
 package com.unim.unimapis.dtos.authentication;
 
-import java.util.List;
-
-import com.unim.unimapis.models.InterestEntity;
 import com.unim.unimapis.models.enums.DegreeType;
 import com.unim.unimapis.models.enums.GenderType;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-
 
 @Setter
 @Getter
