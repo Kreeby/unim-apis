@@ -18,10 +18,16 @@ After the server is running, go to
 http://localhost:5000/
 ```
 
-# Link to the Swagger UI
+# Link to the Swagger UI on local host
 
 ```
 http://localhost:5000/swagger-ui.html
+```
+
+# Link to the Swagger UI on AWS EB
+
+```
+http://unimapp-dev.us-east-1.elasticbeanstalk.com/swagger-ui.html
 ```
 
 The backend is done with
