@@ -32,9 +32,6 @@ public class InterestEntity {
   @Column(name = "id", nullable = false)
   Integer id;
 
-  @Column(name = "interest_name", nullable = false)
-  String name;
-
   @ManyToMany(mappedBy = "interestEntities")
   Set<UserEntity> users;
 

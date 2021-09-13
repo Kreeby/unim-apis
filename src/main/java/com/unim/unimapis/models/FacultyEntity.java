@@ -32,9 +32,6 @@ public class FacultyEntity {
   @Column(name = "id", nullable = false)
   Integer id;
 
-  @Column(name = "faculty_name", nullable = false)
-  String name;
-
   @ManyToMany(mappedBy = "facultyEntities")
   Set<UserEntity> users;
 
