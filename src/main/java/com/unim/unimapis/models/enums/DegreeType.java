@@ -1,6 +1,7 @@
 package com.unim.unimapis.models.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,14 +13,18 @@ import java.util.stream.Stream;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public enum DegreeType {
-  FRESHMAN("Freshman", null),
-  MASTER("Master", null),
-  SOPHOMORE("Sophomore", null),
-  JUNIOR("Junior", null),
-  SENIOR("Senior", null);
+  FRESHMAN("Freshman"),
+  MASTER("Master"),
+  SOPHOMORE("Sophomore"),
+  JUNIOR("Junior"),
+  SENIOR("Senior");
 
   final String value;
-  final Boolean status;
+
+  @JsonValue
+  public String getValue() {
+    return value;
+  }
 
   @JsonCreator
   public static DegreeType fromValue(String value) {

@@ -2,6 +2,8 @@ package com.unim.unimapis.models.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.stream.Stream;
+
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,12 +13,16 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public enum GenderType {
-  MALE("Male", null),
-  FEMALE("Female", null),
-  OTHER("Other", null);
+  MALE("Male"),
+  FEMALE("Female"),
+  OTHER("Other");
 
   final String value;
-  final Boolean status;
+
+  @JsonValue
+  public String getValue() {
+    return value;
+  }
 
   @JsonCreator
   public static GenderType fromValue(String value) {

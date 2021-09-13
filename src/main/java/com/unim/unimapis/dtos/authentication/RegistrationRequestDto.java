@@ -32,6 +32,7 @@ public class RegistrationRequestDto {
   String profileText;
   @NonNull
   Integer universityId;
+  @NonNull
   Integer locationId;
   @NonNull
   List<Integer> interestIds;

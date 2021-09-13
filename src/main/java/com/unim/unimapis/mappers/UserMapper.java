@@ -4,6 +4,7 @@ import com.unim.unimapis.dtos.authentication.RegistrationRequestDto;
 import com.unim.unimapis.dtos.user.UserResponseDto;
 import com.unim.unimapis.models.FacultyEntity;
 import com.unim.unimapis.models.InterestEntity;
+import com.unim.unimapis.models.LocationEntity;
 import com.unim.unimapis.models.RoleEntity;
 import com.unim.unimapis.models.UserEntity;
 import java.time.LocalDateTime;
@@ -22,7 +23,6 @@ public interface UserMapper {
   UserResponseDto toDto(UserEntity userEntity);
 
   List<UserResponseDto> toDtoList(List<UserEntity> userEntities);
-
 
   @Mapping(target = "hashedPassword", source = "requestDto.password")
   @Mapping(target = "locationEntity.id", source = "requestDto.locationId")

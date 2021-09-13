@@ -43,4 +43,4 @@ The backend is done with
 
 
 
-Backend is done with Java 8, without any xml. Tests are written in groovy using Mockito framework
+Backend is done with Java 8, without any xml. Tests are written in java using Mockito framework

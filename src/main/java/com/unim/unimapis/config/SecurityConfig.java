@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
             .antMatchers(USERS_ENDPOINT).permitAll()
             .antMatchers(MESSAGE_ENDPOINT).permitAll()
-            .antMatchers(MD_ENDPOINT).hasRole("USER")
+            .antMatchers(MD_ENDPOINT).hasAuthority("USER")
             .antMatchers(SWAGGER_ENDPOINT).permitAll()
             .antMatchers(WEBJARS_ENDPOINT).permitAll()
             .antMatchers(SWAGGER_RESOURCES_ENDPOINT).permitAll()

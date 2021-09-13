@@ -89,7 +89,7 @@ public class UserEntity {
   UniversityEntity universityEntity;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "location_id")
+  @JoinColumn(name = "location_id", nullable = false)
   LocationEntity locationEntity;
 
   @OneToMany(mappedBy = "userEntity")
