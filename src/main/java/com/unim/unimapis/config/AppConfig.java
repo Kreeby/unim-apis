@@ -14,7 +14,6 @@ public class AppConfig implements WebMvcConfigurer {
           "classpath:/static/", "classpath:/public/" };
 
 
-
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     registry.addResourceHandler("/**")

@@ -1,5 +1,7 @@
 package com.unim.unimapis.controllers;
 
+import com.unim.unimapis.dtos.md.FacultyResponseDto;
+import com.unim.unimapis.dtos.md.InterestResponseDto;
 import com.unim.unimapis.dtos.md.UniversityResponseDto;
 import com.unim.unimapis.services.MdService;
 import lombok.AccessLevel;
@@ -26,4 +28,15 @@ public class MdController {
   public ResponseEntity<List<UniversityResponseDto>> findAllUniversities(@RequestParam String lang) {
     return ResponseEntity.ok(mdService.findAllUniversities(lang));
   }
+
+  @GetMapping("/faculties")
+  public ResponseEntity<List<FacultyResponseDto>> findAllFaculties(@RequestParam String lang) {
+    return ResponseEntity.ok(mdService.findAllFaculties(lang));
+  }
+
+  @GetMapping("/interests")
+  public ResponseEntity<List<InterestResponseDto>> findAllInterests(@RequestParam String lang) {
+    return ResponseEntity.ok(mdService.findAllInterests(lang));
+  }
+
 }

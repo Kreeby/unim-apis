@@ -42,7 +42,7 @@ public class UniversityEntity {
           orphanRemoval = true)
   @MapKey(name = "localizedId.lang")
   @Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
-  private Map<String, LocalizedUniversity> localizations = new HashMap<>();
+  Map<String, LocalizedUniversity> localizations = new HashMap<>();
 
   public String getName(String lang) {
     return localizations.get(lang).getNameTranslated();
