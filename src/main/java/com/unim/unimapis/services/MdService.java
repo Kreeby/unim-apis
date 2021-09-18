@@ -1,15 +1,16 @@
 package com.unim.unimapis.services;
 
-import com.unim.unimapis.dtos.md.FacultyResponseDto;
-import com.unim.unimapis.dtos.md.InterestResponseDto;
-import com.unim.unimapis.dtos.md.UniversityResponseDto;
-import java.util.List;
+import com.unim.unimapis.models.LocalizedFaculty;
+import com.unim.unimapis.models.LocalizedInterest;
+import com.unim.unimapis.models.LocalizedUniversity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface MdService {
 
-  List<UniversityResponseDto> findAllUniversities(String lang);
+  Page<LocalizedUniversity> findAllUniversities(String lang, Pageable pageable);
 
-  List<FacultyResponseDto> findAllFaculties(String lang);
+  Page<LocalizedFaculty> findAllFaculties(String lang, Pageable pageable);
 
-  List<InterestResponseDto> findAllInterests(String lang);
+  Page<LocalizedInterest> findAllInterests(String lang, Pageable pageable);
 }
