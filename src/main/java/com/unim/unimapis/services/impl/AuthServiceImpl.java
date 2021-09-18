@@ -27,6 +27,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -77,5 +78,10 @@ public class AuthServiceImpl implements AuthService {
     UserEntity savedUser = userRepository.save(userEntity);
 
     return registrationMapper.toDto(savedUser);
+  }
+
+  @Override
+  public UserEntity getCurrentUser() {
+    return (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
   }
 }
