@@ -9,7 +9,6 @@ import com.unim.unimapis.mappers.RegistrationMapper;
 import com.unim.unimapis.mappers.UserMapper;
 import com.unim.unimapis.models.FacultyEntity;
 import com.unim.unimapis.models.InterestEntity;
-import com.unim.unimapis.models.LocationEntity;
 import com.unim.unimapis.models.RoleEntity;
 import com.unim.unimapis.models.UserEntity;
 import com.unim.unimapis.repository.FacultyRepository;
@@ -27,7 +26,6 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -58,8 +56,6 @@ public class AuthServiceImpl implements AuthService {
             .orElseThrow(() -> new NoSuchElementException("No such user with username " + email));
     String token = jwtTokenProvider.createToken(email, user.getRoles());
 
-    System.out.println(token + " " + user);
-
     return authMapper.toDto(email, token);
   }
 
@@ -80,8 +76,8 @@ public class AuthServiceImpl implements AuthService {
     return registrationMapper.toDto(savedUser);
   }
 
-  @Override
-  public UserEntity getCurrentUser() {
-    return (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-  }
+//  @Override
+//  public String getCurrentUserLogin() {
+//    return ;
+//  }
 }

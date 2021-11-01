@@ -35,7 +35,10 @@ public class RegistrationRequestDto {
   @NonNull
   Integer locationId;
   @NonNull
+  String lang;
+  @NonNull
   List<Integer> interestIds;
   @NonNull
   List<Integer> facultyId;
+
 }

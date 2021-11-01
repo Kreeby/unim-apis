@@ -1,5 +1,6 @@
 package com.unim.unimapis.controllers;
 
+import com.unim.unimapis.dtos.md.UniversityResponseDto;
 import com.unim.unimapis.models.LocalizedFaculty;
 import com.unim.unimapis.models.LocalizedInterest;
 import com.unim.unimapis.models.LocalizedUniversity;
@@ -23,6 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/md")
 public class MdController {
   MdService mdService;
+
+
+  @GetMapping("/users/university")
+  public ResponseEntity<UniversityResponseDto> getUserUniversities() {
+    return ResponseEntity.ok(mdService.getUserUniversities());
+  }
 
   @GetMapping("/universities")
   public ResponseEntity<Page<LocalizedUniversity>> findAllUniversities(@RequestParam String lang, Pageable pageable) {

@@ -92,6 +92,9 @@ public class UserEntity {
   @JoinColumn(name = "location_id", nullable = false)
   LocationEntity locationEntity;
 
+  @Column(name = "lang")
+  String lang;
+
   @OneToMany(mappedBy = "userEntity")
   Set<UserPostEntity> userPostEntities;
 

@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   static String REGISTER_ENDPOINT = "/api/v1/auth/register";
   static String ADMIN_ENDPOINT = "/api/v1/admin/**";
   static String MESSAGE_ENDPOINT = "/chat";
-  static String USERS_ENDPOINT = "/api/v1/**";
+  static String USERS_ENDPOINT = "/api/v1/users/";
   static String MD_ENDPOINT = "/api/v1/md/**";
   static String SWAGGER_ENDPOINT = "/swagger-ui.html";
   static String SWAGGER_API_ENDPOINT = "/v2/**";
@@ -57,9 +57,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             .antMatchers(LOGIN_ENDPOINT, REGISTER_ENDPOINT).permitAll()
             .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
-            .antMatchers(USERS_ENDPOINT).permitAll()
+            .antMatchers(USERS_ENDPOINT).hasAuthority("USER")
             .antMatchers(MESSAGE_ENDPOINT).permitAll()
-            .antMatchers(MD_ENDPOINT).hasAuthority("USER")
+            .antMatchers(MD_ENDPOINT).permitAll()
             .antMatchers(SWAGGER_ENDPOINT).permitAll()
             .antMatchers(WEBJARS_ENDPOINT).permitAll()
             .antMatchers(SWAGGER_RESOURCES_ENDPOINT).permitAll()

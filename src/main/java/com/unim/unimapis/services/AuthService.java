@@ -11,5 +11,5 @@ public interface AuthService {
 
   RegistrationResponseDto register(RegistrationRequestDto requestDto);
 
-  UserEntity getCurrentUser();
+//  UserEntity getCurrentUser();
 }
